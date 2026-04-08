@@ -225,8 +225,14 @@ resize();
 window.addEventListener('resize',resize);
 animate();
 
-// Prevent Typeform autofocus from hijacking scroll on mobile
-window.addEventListener('load', () => { setTimeout(() => window.scrollTo(0, 0), 100); });
+// Force page to start at top regardless of embeds
+if (history.scrollRestoration) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+  setTimeout(() => window.scrollTo(0, 0), 300);
+  setTimeout(() => window.scrollTo(0, 0), 800);
+});
 </script>
 </body>
 </html>
