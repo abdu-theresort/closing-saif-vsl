@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Closing Saif — Application Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#0a0000;color:#fff;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body{position:relative;min-height:100vh;}
+
+  #beams{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+  .veil{position:fixed;inset:0;background:radial-gradient(ellipse at top,rgba(120,0,0,.15),transparent 70%);z-index:1;pointer-events:none;}
+  .grid-overlay{position:fixed;inset:0;background-image:linear-gradient(rgba(255,40,40,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,40,40,.05) 1px,transparent 1px);background-size:60px 60px;z-index:1;pointer-events:none;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);}
+
+  main{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:60px 24px 100px;}
+
+  .logo{display:flex;justify-content:center;margin-bottom:48px;}
+  .logo-mark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.18em;text-align:center;line-height:1;color:#ff3838;text-transform:uppercase;}
+  .logo-mark span{display:block;font-size:32px;letter-spacing:.05em;font-weight:800;background:linear-gradient(180deg,#ff5050,#c00);-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:2px;}
+
+  .step-eyebrow{color:#ff2020;font-weight:800;font-size:clamp(20px,2.4vw,28px);letter-spacing:.01em;text-shadow:0 0 20px rgba(255,30,30,.5);font-family:'Space Grotesk',sans-serif;}
+  .step1-head{text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(22px,2.8vw,34px);line-height:1.3;letter-spacing:-.01em;}
+  .step1-head .red{color:#ff2020;}
+  .mandatory{display:block;text-align:center;margin-top:24px;font-weight:700;font-size:clamp(16px,1.7vw,20px);color:#fff;text-decoration:underline;text-decoration-color:#ff2020;text-underline-offset:6px;}
+
+  .precall-vsl-wrap{margin:40px auto 0;max-width:900px;}
+  .precall-vsl{aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#1a0505;border:1px solid rgba(255,40,40,.25);box-shadow:0 0 80px rgba(255,30,30,.25),0 30px 80px rgba(0,0,0,.6);position:relative;display:flex;align-items:center;justify-content:center;}
+  .precall-vsl::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,40,40,.08),transparent 60%);}
+  .play-btn{width:78px;height:78px;border-radius:50%;background:rgba(220,20,20,.85);border:3px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 50px rgba(255,30,30,.7);position:relative;z-index:2;transition:transform .2s;}
+  .play-btn:hover{transform:scale(1.08);}
+  .play-btn::after{content:"";border-left:22px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:6px;}
+  .play-sm{width:62px;height:62px;}
+  .play-sm::after{border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px;}
+
+  .sect{margin-top:120px;}
+  .step-label-row{text-align:center;margin-bottom:18px;}
+  .step-label-row .num{color:#ff2020;font-weight:800;font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.4vw,28px);}
+  .step-label-row .txt{color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.4vw,28px);}
+  .step-label-row .red{color:#ff2020;}
+
+  .faq{display:flex;flex-direction:column;gap:64px;margin-top:48px;}
+  .faq-q{text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,30px);color:#fff;line-height:1.3;margin-bottom:24px;letter-spacing:-.01em;}
+  .faq-vid{aspect-ratio:16/9;border-radius:12px;background:#1a0505;border:1px solid rgba(255,40,40,.2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);max-width:880px;margin:0 auto;}
+  .faq-vid::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,40,40,.1),transparent);}
+
+  .case-h{font-family:'Space Grotesk',sans-serif;text-align:center;font-weight:800;font-size:clamp(22px,2.8vw,34px);text-transform:uppercase;margin-bottom:24px;line-height:1.25;letter-spacing:-.01em;}
+  .case-h .red{color:#ff2020;text-shadow:0 0 20px rgba(255,30,30,.5);}
+  .case-vid{aspect-ratio:16/9;border-radius:12px;background:#1a0505;border:1px solid rgba(255,40,40,.2);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);max-width:880px;margin:0 auto 80px;}
+  .case-vid::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,40,40,.1),transparent);}
+
+  .next-box{max-width:880px;margin:80px auto 0;background:#0a0000;border:2px solid #ff2020;border-radius:18px;padding:48px 44px;box-shadow:0 0 80px rgba(255,30,30,.4),0 0 140px rgba(255,30,30,.2);}
+  .next-h{font-family:'Space Grotesk',sans-serif;text-align:center;font-weight:800;font-size:clamp(22px,2.8vw,34px);text-transform:uppercase;margin-bottom:32px;letter-spacing:-.01em;}
+  .next-step{display:flex;gap:18px;margin-bottom:22px;align-items:flex-start;}
+  .next-step:last-child{margin-bottom:0;}
+  .next-tag{background:#ff2020;color:#fff;font-weight:800;font-size:14px;padding:6px 12px;border-radius:6px;font-family:'Space Grotesk',sans-serif;flex-shrink:0;letter-spacing:.02em;white-space:nowrap;}
+  .next-text{color:#fff;font-size:16px;line-height:1.55;}
+
+  .wins-h{font-family:'Space Grotesk',sans-serif;text-align:center;font-weight:800;font-size:clamp(22px,2.8vw,34px);text-transform:uppercase;margin:96px 0 40px;letter-spacing:-.01em;}
+  .wins-h .red{color:#ff2020;text-shadow:0 0 20px rgba(255,30,30,.5);}
+  .ss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:980px;margin:0 auto;}
+  .ss-slot{aspect-ratio:4/5;border-radius:12px;border:1px dashed rgba(255,40,40,.35);background:rgba(20,5,5,.5);display:flex;align-items:center;justify-content:center;color:#ff5050;font-size:13px;text-align:center;padding:20px;backdrop-filter:blur(10px);overflow:hidden;}
+  .ss-slot img{width:100%;height:100%;object-fit:cover;border-radius:11px;}
+
+  footer{text-align:center;margin-top:80px;color:#555;font-size:12px;}
+</style>
+</head>
+<body>
+
+<canvas id="beams"></canvas>
+<div class="veil"></div>
+<div class="grid-overlay"></div>
+
+<main>
+  <div class="logo">
+    <div class="logo-mark">Closing<span>SAIF</span></div>
+  </div>
+
+  <!-- STEP 1: Pre-call VSL -->
+  <p class="step1-head">
+    <span class="step-eyebrow">Step 1:</span> Wait! Your Application Is Being Reviewed.<br>
+    You'll Be Getting A Call From A <span class="red">610 Area Code Number</span> In The Next 5–10 Minutes <br>(If Approved)
+  </p>
+  <span class="mandatory">Watch This Mandatory 2 Min Pre Call Video In The Meantime</span>
+
+  <div class="precall-vsl-wrap">
+    <div class="precall-vsl">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+
+  <!-- STEP 2: FAQ -->
+  <section class="sect">
+    <div class="step-label-row">
+      <span class="num">Step 2:</span> <span class="txt">Get all your questions answered <span class="red">BEFORE</span> your call (If Approved).</span>
+    </div>
+
+    <div class="faq">
+      <div>
+        <div class="faq-q">What is High Ticket Sales?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">How do I know if Hakim Saif is legit?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">What Do I Get Inside The Closing Saif Mentorship?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">How Many People Fail/Succeed In The Closing Saif Mentorship?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">How Do I Know If High Ticket Sales Is For Me?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">How Does Day 1 – Day 90 Look Like Inside The Closing Saif</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">I'm working a job and/or in school. Do I have time for this?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">How Long Does it Take For Me To Make Money?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">Why Should I Invest In A Mentorship When There's So Much Free Information Online?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+      <div>
+        <div class="faq-q">What Is Offer Placement & How Does It Work?</div>
+        <div class="faq-vid"><div class="play-btn play-sm"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: Case studies -->
+  <section class="sect">
+    <div class="step-label-row">
+      <span class="num">Step 3:</span> <span class="txt">Check out some of our recent student case studies.</span>
+    </div>
+
+    <div style="margin-top:48px;">
+      <h3 class="case-h">How Tyler An 18-Year-Old <span class="red">Left College & Made 14K</span> In His First 2 Months</h3>
+      <div class="case-vid"><div class="play-btn"></div></div>
+
+      <h3 class="case-h">Watch How Alizar Made <span class="red">11K In Commissions Within 5 Weeks</span> While Still Being A Full Time Student</h3>
+      <div class="case-vid"><div class="play-btn"></div></div>
+    </div>
+  </section>
+
+  <!-- What's Next box -->
+  <div class="next-box">
+    <h3 class="next-h">What's Next From Now → Your Call?</h3>
+    <div class="next-step">
+      <span class="next-tag">Step 1:</span>
+      <span class="next-text">Consume the first video on this page.</span>
+    </div>
+    <div class="next-step">
+      <span class="next-tag">Step 2:</span>
+      <span class="next-text">Consume the frequently asked questions section.</span>
+    </div>
+    <div class="next-step">
+      <span class="next-tag">Step 3:</span>
+      <span class="next-text">I'll be sending you a handful of emails per day from now until your call. These are ACTUAL informative and value-driven emails that will help you understand what creator attention sales is more, and if it's right for you. Make sure to read these emails from me.</span>
+    </div>
+    <div class="next-step">
+      <span class="next-tag">Step 4:</span>
+      <span class="next-text">My team will reach out to you via call/text from the number you gave. We won't spam you — this is to get to know who you are and get you ready for your call.</span>
+    </div>
+  </div>
+
+  <!-- Extra wins -->
+  <h2 class="wins-h"><span class="red">Check Out</span> Some Extra Wins From Our Students As Well</h2>
+  <div class="ss-grid">
+    <div class="ss-slot"><img src="win-1.png" alt="" onerror="this.parentNode.textContent='Screenshot 1'"></div>
+    <div class="ss-slot"><img src="win-2.png" alt="" onerror="this.parentNode.textContent='Screenshot 2'"></div>
+    <div class="ss-slot"><img src="win-3.png" alt="" onerror="this.parentNode.textContent='Screenshot 3'"></div>
+    <div class="ss-slot"><img src="win-4.png" alt="" onerror="this.parentNode.textContent='Screenshot 4'"></div>
+    <div class="ss-slot"><img src="win-5.png" alt="" onerror="this.parentNode.textContent='Screenshot 5'"></div>
+    <div class="ss-slot"><img src="win-6.png" alt="" onerror="this.parentNode.textContent='Screenshot 6'"></div>
+  </div>
+
+  <footer>© Closing Saif — All rights reserved</footer>
+</main>
+
+<script>
+// Force scroll to top
+if (history.scrollRestoration) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+  setTimeout(() => window.scrollTo(0, 0), 300);
+});
+
+const canvas = document.getElementById('beams');
+const ctx = canvas.getContext('2d');
+let beams = [];
+const MIN_BEAMS = 6;
+
+function createBeam(w,h){
+  return {
+    x: Math.random()*w*1.5 - w*0.25,
+    y: Math.random()*h*1.5 - h*0.25,
+    width: 25+Math.random()*30,
+    length: h*2.5,
+    angle: -35+Math.random()*10,
+    speed: 0.3+Math.random()*0.5,
+    opacity: 0.04+Math.random()*0.04,
+    hue: 350+Math.random()*15,
+    pulse: Math.random()*Math.PI*2,
+    pulseSpeed: 0.02+Math.random()*0.03
+  };
+}
+function resize(){
+  const dpr = window.devicePixelRatio||1;
+  canvas.width = window.innerWidth*dpr;
+  canvas.height = window.innerHeight*dpr;
+  canvas.style.width = window.innerWidth+'px';
+  canvas.style.height = window.innerHeight+'px';
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.scale(dpr,dpr);
+  beams = Array.from({length:Math.floor(MIN_BEAMS*1.5)}, ()=>createBeam(window.innerWidth,window.innerHeight));
+}
+function resetBeam(b,i,total){
+  const col = i%3;
+  const sp = window.innerWidth/3;
+  b.y = window.innerHeight+100;
+  b.x = col*sp + sp/2 + (Math.random()-0.5)*sp*0.5;
+  b.width = 30+Math.random()*40;
+  b.speed = 0.3+Math.random()*0.2;
+  b.hue = 350 + (i*15)/total;
+  b.opacity = 0.05+Math.random()*0.05;
+}
+function drawBeam(b){
+  ctx.save();
+  ctx.translate(b.x,b.y);
+  ctx.rotate(b.angle*Math.PI/180);
+  const op = b.opacity*(0.8+Math.sin(b.pulse)*0.2);
+  const g = ctx.createLinearGradient(0,0,0,b.length);
+  g.addColorStop(0,`hsla(${b.hue},95%,55%,0)`);
+  g.addColorStop(0.1,`hsla(${b.hue},95%,55%,${op*0.5})`);
+  g.addColorStop(0.4,`hsla(${b.hue},95%,55%,${op})`);
+  g.addColorStop(0.6,`hsla(${b.hue},95%,55%,${op})`);
+  g.addColorStop(0.9,`hsla(${b.hue},95%,55%,${op*0.5})`);
+  g.addColorStop(1,`hsla(${b.hue},95%,55%,0)`);
+  ctx.fillStyle = g;
+  ctx.fillRect(-b.width/2,0,b.width,b.length);
+  ctx.restore();
+}
+function animate(){
+  ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+  ctx.filter = 'blur(40px)';
+  const total = beams.length;
+  beams.forEach((b,i)=>{
+    b.y -= b.speed;
+    b.pulse += b.pulseSpeed;
+    if(b.y+b.length<-100) resetBeam(b,i,total);
+    drawBeam(b);
+  });
+  requestAnimationFrame(animate);
+}
+resize();
+window.addEventListener('resize',resize);
+animate();
+</script>
+</body>
+</html>
