@@ -224,6 +224,9 @@ function animate(){
 resize();
 window.addEventListener('resize',resize);
 animate();
+
+// Prevent Typeform autofocus from hijacking scroll on mobile
+window.addEventListener('load', () => { setTimeout(() => window.scrollTo(0, 0), 100); });
 </script>
 </body>
 </html>
